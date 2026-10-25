@@ -1,16 +1,14 @@
-CC = gcc
+CC     = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
-all: programa
-
-programa: main.o ListaSequencial.o
-	$(CC) $(CFLAGS) -o programa main.o ListaSequencial.o
-
-main.o: main.c ListaSequencial.h
-	$(CC) $(CFLAGS) -c main.c
+teste: ListaSequencial.o main.o
+	$(CC) $(CFLAGS) -o teste ListaSequencial.o main.o
 
 ListaSequencial.o: ListaSequencial.c ListaSequencial.h
 	$(CC) $(CFLAGS) -c ListaSequencial.c
 
+main.o: main.c ListaSequencial.h
+	$(CC) $(CFLAGS) -c main.c
+
 clean:
-	rm -f *.o programa
+	rm -f *.o teste
